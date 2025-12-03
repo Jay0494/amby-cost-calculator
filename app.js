@@ -1,10 +1,13 @@
-// Seed usage per product (kg)
+// Seed usage per product (kg per finished unit)
 const SEED_KG = {
     family: 2.45,
     decanter: 0.61,
     pouch: 0.07,
     business: 2.45
 };
+
+// 25kg gas for 100kg dates => 0.25kg gas per 1kg dates
+const GAS_PER_KG_SEEDS = 25 / 100; // 0.25
 
 // Material configuration
 const materials = {
@@ -73,11 +76,18 @@ const materials = {
         costId: "cost_branding",
         unitId: "unit_branding",
         usedIn: ["family", "decanter", "pouch", "business"]
+    },
+    // GAS with special logic tied to seed usage
+    gas: {
+        type: "gas",
+        costId: "cost_gas",
+        unitId: "unit_gas",
+        usedIn: ["family", "decanter", "pouch", "business"]
     }
-};
+    };
 
-// Which container determines if we should calculate that product
-const productContainerField = {
+    // Which container determines if we should calculate that product
+    const productContainerField = {
     family: "familyContainer",
     decanter: "decanterContainer",
     pouch: "pouchContainer",
@@ -90,6 +100,7 @@ const productContainerField = {
 
     if (!cost || !units || units === 0) return null;
 
+    // generic: cost per kg (for seeds/gas) or cost per piece (for materials)
     return cost / units;
     }
 
@@ -97,36 +108,40 @@ const productContainerField = {
     let total = 0;
 
     Object.values(materials).forEach(mat => {
-    if (!mat.usedIn.includes(productKey)) return;
+        if (!mat.usedIn.includes(productKey)) return;
 
-    const cpu = getCostPerUnit(mat.costId, mat.unitId);
-    if (cpu == null) return; // material not provided → skip it
+        const cpu = getCostPerUnit(mat.costId, mat.unitId);
+        if (cpu == null) return; // material not provided → skip it
 
-    if (mat.type === "seed") {
-      // cost per kg * kg required for that product
-      total += cpu * SEED_KG[productKey];
-    } else {
-      // assume 1 piece of each material per finished product
-      total += cpu * 1;
-}
+        if (mat.type === "seed") {
+        // cost per kg seeds * kg required for that product
+        total += cpu * SEED_KG[productKey];
+        } else if (mat.type === "gas") {
+        // gas per unit = seedKg * 0.25
+        const gasKgForProduct = SEED_KG[productKey] * GAS_PER_KG_SEEDS;
+        total += cpu * gasKgForProduct;
+        } else {
+        // normal materials: assume 1 piece per finished product
+        total += cpu * 1;
+        }
     });
 
     return total;
-}
+    }
 
-function shouldCalculateProduct(productKey) {
+    function shouldCalculateProduct(productKey) {
     const containerKey = productContainerField[productKey];
     const container = materials[containerKey];
     const units = parseFloat(
-    document.getElementById(container.unitId).value
+        document.getElementById(container.unitId).value
     );
 
-  // If container units are empty or zero -> don't calculate this product
+    // If container units are empty or zero -> don't calculate this product
     if (!units || units === 0) return false;
     return true;
-}
+    }
 
-function calculateCosts() {
+    function calculateCosts() {
     const results = {
         family: document.getElementById("result_family"),
         decanter: document.getElementById("result_decanter"),
@@ -143,4 +158,4 @@ function calculateCosts() {
         const cost = calculateProductCost(key);
         results[key].value = "₦" + cost.toFixed(2);
     });
-}
+    }
