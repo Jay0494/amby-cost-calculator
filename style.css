@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.app {
+    max-width: 430px;
+    margin: 10px auto 30px;
+    background: #ffffff;
+    padding: 20px 18px 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.logo {
+    display: block;
+    max-width: 180px;
+    margin: 0 auto 10px;
+}
+
+h2 {
+    text-align: center;
+    margin: 5px 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ---------- INPUT ROWS ----------- */
+
+.row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;   /* Label | Cost | Qty (equal sizes) */
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.row input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #d5d5d5;
+    background: #fafafa;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.row input:focus {
+    border-color: #b00000;
+    background: #fff;
+}
+
+/* ------------ BUTTON ------------ */
+
+.btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    border: none;
+    background: #b00000;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 15px 0 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    background: #8c0000;
+}
+
+/* ---------- RESULTS BOX ---------- */
+
+.results {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #efefef;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.08);
+}
+
+.results h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.results label {
+    font-size: 13px;
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+.results input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #ffffff;
+    margin-top: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #222;
+}

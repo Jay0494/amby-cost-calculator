@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amby Dated Foods – Production Cost</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app">
+        <img src="images/ambydate pix.png" alt="Amby Dated Foods" class="logo" />
+
+        <h2>Production Cost Calculator</h2>
+
+    <div class="form">
+
+        <!-- Date seeds -->
+        <div class="row">
+        <span class="label">Date seeds</span>
+        <input id="cost_dateSeeds" type="number" placeholder="Cost (₦)" />
+        <input id="unit_dateSeeds" type="number" placeholder="Kg" />
+    </div>
+
+    <!-- Containers -->
+    <div class="row">
+        <span class="label">Family size bottle</span>
+        <input id="cost_familyContainer" type="number" placeholder="Cost (₦)" />
+        <input id="unit_familyContainer" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">Decanter bottles</span>
+        <input id="cost_decanterContainer" type="number" placeholder="Cost (₦)" />
+        <input id="unit_decanterContainer" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">30ml pouch</span>
+        <input id="cost_pouchContainer" type="number" placeholder="Cost (₦)" />
+        <input id="unit_pouchContainer" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">Business container</span>
+        <input id="cost_businessContainer" type="number" placeholder="Cost (₦)" />
+        <input id="unit_businessContainer" type="number" placeholder="Pcs" />
+    </div>
+
+    <!-- Stickers -->
+    <div class="row">
+        <span class="label">250ml stickers</span>
+        <input id="cost_sticker250" type="number" placeholder="Cost (₦)" />
+        <input id="unit_sticker250" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">1L stickers</span>
+        <input id="cost_sticker1L" type="number" placeholder="Cost (₦)" />
+        <input id="unit_sticker1L" type="number" placeholder="Pcs" />
+    </div>
+
+    <!-- Films, nylon, branding -->
+    <div class="row">
+        <span class="label">Outer sealing film</span>
+        <input id="cost_outerFilm" type="number" placeholder="Cost (₦)" />
+        <input id="unit_outerFilm" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">Inner sealing film</span>
+        <input id="cost_innerFilm" type="number" placeholder="Cost (₦)" />
+        <input id="unit_innerFilm" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">Packaging nylon</span>
+        <input id="cost_packaging" type="number" placeholder="Cost (₦)" />
+        <input id="unit_packaging" type="number" placeholder="Pcs" />
+    </div>
+
+    <div class="row">
+        <span class="label">Branding</span>
+        <input id="cost_branding" type="number" placeholder="Cost (₦)" />
+        <input id="unit_branding" type="number" placeholder="Pcs" />
+    </div>
+
+    <button class="btn" onclick="calculateCosts()">Calculate</button>
+    </div>
+
+    <div class="results">
+    <h3>Production Cost (per unit)</h3>
+
+<label>Family size bottle</label>
+    <input id="result_family" disabled />
+
+    <label>Decanter bottle</label>
+    <input id="result_decanter" disabled />
+
+    <label>30ml pouch</label>
+    <input id="result_pouch" disabled />
+
+    <label>Business size / L</label>
+    <input id="result_business" disabled />
+    </div>
+    </div>
+<script src="app.js"></script>
+    </body>
+</html>
